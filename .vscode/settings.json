@@ -1,4 +1,0 @@
-{
-    "appService.defaultWebAppToDeploy": "/subscriptions/877452eb-3cd4-4bc9-bed2-5a16570a6407/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/Jeff-the-bot",
-    "appService.deploySubpath": ""
-}
