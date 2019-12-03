@@ -8,6 +8,7 @@
     "scripts": {
         "start": "node ./index.js",
         "watch": "nodemon ./index.js",
+        "lint": "./node_modules/.bin/eslint .",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -18,11 +19,16 @@
         "botbuilder": "~4.6.1",
         "botbuilder-ai": "~4.6.1",
         "botbuilder-dialogs": "~4.6.1",
-        "dashbot": "^11.1.0",
         "dotenv": "^8.2.0",
         "restify": "~8.4.0"
     },
     "devDependencies": {
+        "eslint": "^6.6.0",
+        "eslint-config-standard": "^14.1.0",
+        "eslint-plugin-import": "^2.18.2",
+        "eslint-plugin-node": "^10.0.0",
+        "eslint-plugin-promise": "^4.2.1",
+        "eslint-plugin-standard": "^4.0.1",
         "nodemon": "~1.19.4"
     }
 }

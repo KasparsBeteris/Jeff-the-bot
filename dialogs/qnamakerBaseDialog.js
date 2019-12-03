@@ -12,7 +12,7 @@ const { QnACardBuilder } = require('../utils/qnaCardBuilder');
 // Default parameters
 const DefaultThreshold = 0.3;
 const DefaultTopN = 3;
-const DefaultNoAnswer = 'Sorry, no answers found. Try phrasing it differently, please.';
+const DefaultNoAnswer = 'No QnAMaker answers found.';
 
 // Card parameters
 const DefaultCardTitle = 'Did you mean:';

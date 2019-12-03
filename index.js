@@ -14,8 +14,6 @@ const { QnAMaker } = require('botbuilder-ai');
 const { QnABot } = require('./bots/qnaBot');
 const { RootDialog } = require('./dialogs/rootDialog');
 
-const dashbot = require('dashbot')('JsfVrvPCtyQcLgDBkOeddkLeDVMWvAPA85ATYw4I').microsoft;
-
 // Note: Ensure you have a .env file and include QnAMakerKnowledgeBaseId, QnAMakerEndpointKey and QnAMakerHost.
 const ENV_FILE = path.join(__dirname, '.env');
 require('dotenv').config({ path: ENV_FILE });
@@ -27,7 +25,7 @@ const adapter = new BotFrameworkAdapter({
     appPassword: process.env.MicrosoftAppPassword,
     openIdMetadata: process.env.BotOpenIdMetadata
 });
-adapter.use(dashbot.middleware());
+
 // Catch-all for errors.
 adapter.onTurnError = async (context, error) => {
     // This check writes out errors to console log .vs. app insights.
