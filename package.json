@@ -19,6 +19,7 @@
         "botbuilder": "~4.6.1",
         "botbuilder-ai": "~4.6.1",
         "botbuilder-dialogs": "~4.6.1",
+        "dashbot": "^11.1.0",
         "dotenv": "^8.2.0",
         "restify": "~8.4.0"
     },
