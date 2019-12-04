@@ -7,3 +7,4 @@ For Question and Answer storage the bot uses an AI based cognitive service, whic
 
 To try out jeff the bot open index.html in JeffChatBotWebpage folder.
 
+To see knowledge base of the bot open knowledge-base.tsv or knowledge-base.xlsx in JeffChatBotWebpage folder.
