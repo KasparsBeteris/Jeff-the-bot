@@ -2,14 +2,10 @@
 // Licensed under the MIT License.
 
 // index.js is used to setup and configure your bot
-if (!process.env.DASHBOT_API_KEY_MICROSOFT) {
-    throw new Error('"DASHBOT_API_KEY_MICROSOFT" environment variable must be defined');
-  }
+
 // Import required packages
 const path = require('path');
 const restify = require('restify');
-const express = require('express');
-const bodyParser = require('body-parser');
 
 // Import required bot services. See https://aka.ms/bot-services to learn more about the different parts of a bot.
 const { BotFrameworkAdapter, ConversationState, MemoryStorage, UserState } = require('botbuilder');
@@ -19,10 +15,6 @@ const { QnABot } = require('./bots/qnaBot');
 const { RootDialog } = require('./dialogs/rootDialog');
 
 const dashbot = require('dashbot')('JsfVrvPCtyQcLgDBkOeddkLeDVMWvAPA85ATYw4I').microsoft;
-const { BotFrameworkAdapter, MemoryStorage, ConversationState } = require('botbuilder');
-
-const app = express();
-app.use(bodyParser.json());
 
 // Note: Ensure you have a .env file and include QnAMakerKnowledgeBaseId, QnAMakerEndpointKey and QnAMakerHost.
 const ENV_FILE = path.join(__dirname, '.env');
@@ -35,12 +27,7 @@ const adapter = new BotFrameworkAdapter({
     appPassword: process.env.MicrosoftAppPassword,
     openIdMetadata: process.env.BotOpenIdMetadata
 });
-const dashbot = require('../src/dashbot')(process.env.DASHBOT_API_KEY_MICROSOFT,
-    {debug:true, urlRoot: process.env.DASHBOT_URL_ROOT}).microsoft
-adapter.use(dashbot.middleware())
-
-const conversationState = new ConversationState(new MemoryStorage());
-adapter.use(conversationState);
+adapter.use(dashbot.middleware());
 // Catch-all for errors.
 adapter.onTurnError = async (context, error) => {
     // This check writes out errors to console log .vs. app insights.
@@ -109,26 +96,3 @@ server.post('/api/messages', (req, res) => {
         await bot.run(turnContext);
     });
 });
-
-// Listen for incoming requests
-const webHookPath = '/api/messages';
-app.post(webHookPath, (req, res) => {
-  // Route received request to adapter for processing
-  adapter.processActivity(req, res, (context) => {
-    if (context.activity.type === 'message') {
-      const state = conversationState.get(context);
-      const count = state.count === undefined ? state.count = 0 : ++state.count;
-      const p = context.sendActivity(`${count}: You said "${context.activity.text}"`);
-      return p.then((data) => {
-        console.log(data);
-        return data;
-      })
-    } else {
-      return context.sendActivity(`[${context.activity.type} event detected]`);
-    }
-  });
-});
-
-var port = process.env.port || process.env.PORT || 3978;
-app.listen(port);
-console.log('microsoft webhook available at http://localhost:' + port + webHookPath);
