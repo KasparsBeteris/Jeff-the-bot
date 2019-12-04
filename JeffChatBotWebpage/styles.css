@@ -1,0 +1,10 @@
+body {
+    background-color: PowderBlue;
+}
+.row { 
+    padding-top: 8em;
+}
+.list {
+    color: DarkRed;
+    font-size: 20px;
+}
