@@ -12,7 +12,7 @@ const { QnACardBuilder } = require('../utils/qnaCardBuilder');
 // Default parameters
 const DefaultThreshold = 0.3;
 const DefaultTopN = 3;
-const DefaultNoAnswer = 'Sorry, no answer found for the question';
+const DefaultNoAnswer = 'Sorry, no answer found for the question. If you would like to talk with a real person just write "I wish to talk with a real person" ';
 
 // Card parameters
 const DefaultCardTitle = 'Did you mean:';
